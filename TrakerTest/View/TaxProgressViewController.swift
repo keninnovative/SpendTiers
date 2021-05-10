@@ -9,13 +9,24 @@ import UIKit
 
 class TaxProgressViewController: UIViewController {
 
+    var user: User?
+    let progressCollectionView: UICollectionView = UICollectionView(frame: .zero)
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = user?.name
     }
     
-
+    init(user: User) {
+        self.user = user 
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     /*
     // MARK: - Navigation
 

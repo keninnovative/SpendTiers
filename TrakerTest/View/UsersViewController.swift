@@ -7,12 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UsersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let users = [User(name: "John Doe", spend: 20001),
                  User(name: "Richard Roe", spend: 5002),
-                 User(name: "Jane Hoe", spend: 3600),
-                 User(name: "Really long with easdfasdfadsfadsfsadfadsfsadfasdfsdafadsfaadsfasdfadsfdasfadssfadsfds", spend: 3600)]
+                 User(name: "Jane Hoe", spend: 3600)]
     private let cellIdentifier = "UserTaxCell"
     let tableView = UITableView(frame: .zero)
     
@@ -28,6 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        self.title = "Users"
         
         tableView.tableFooterView = UIView()
         tableView.register(UserTaxCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -55,6 +55,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = users[indexPath.row]
+        self.navigationController?.pushViewController(TaxProgressViewController(user: user), animated: true)
     }
 
 }

@@ -12,7 +12,7 @@ class UserTaxCell: UITableViewCell {
     var user: User? {
         didSet {
             userNameLabel.text = user?.name
-            taxLabel.text = String(format: "$%0.2f", user!.spend)
+            spendLabel.text = String(format: "$%0.2f", user!.spend)
         }
     }
     
