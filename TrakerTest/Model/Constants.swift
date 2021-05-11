@@ -9,4 +9,5 @@ import Foundation
 
 enum CellIdentifiers {
     static let progressCollectionCellId: String = "progressCell"
+    static let tierTableCellId: String = "tierTableCell"
 }

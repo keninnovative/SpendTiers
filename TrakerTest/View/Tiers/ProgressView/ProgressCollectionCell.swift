@@ -20,7 +20,7 @@ class ProgressCollectionCell: UICollectionViewCell {
             }
             else if progress!.spend >= progress!.tier.to {
                 progressBar.setProgress(1.0, animated: true)
-                msgLabel.text = String(format: "You’ve reached Tier %d", tiers.firstIndex(of: progress!.tier)! + 1)
+                msgLabel.text = String(format: "You’ve reached %@", progress!.tier.title)
             }
             else {
                 let progressRatio = Float((progress!.spend - progress!.tier.from)/(progress!.tier.to - progress!.tier.from))
@@ -68,6 +68,7 @@ class ProgressCollectionCell: UICollectionViewCell {
     private lazy var progressStackView:UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [tierFromLabel, progressBar, tierToLabel])
         stackView.spacing = 6
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -81,6 +82,7 @@ class ProgressCollectionCell: UICollectionViewCell {
     }()
     
     private func commonInit() {
+        backgroundColor = .white
         addSubview(stackView)
     }
 }

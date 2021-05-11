@@ -59,7 +59,7 @@ class UsersViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
-        self.navigationController?.pushViewController(TaxProgressViewController(user: user), animated: true)
+        self.navigationController?.pushViewController(TiersProgressViewController(user: user), animated: true)
     }
 
 }

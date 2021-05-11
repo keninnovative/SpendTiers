@@ -13,7 +13,7 @@
 		15392AB82641DB71007B4D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15392AB62641DB71007B4D11 /* LaunchScreen.storyboard */; };
 		15392AC32641DB74007B4D11 /* TrakerTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15392AC22641DB74007B4D11 /* TrakerTestTests.swift */; };
 		15392ACE2641DB74007B4D11 /* TrakerTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15392ACD2641DB74007B4D11 /* TrakerTestUITests.swift */; };
-		15392AEA2641E636007B4D11 /* TaxProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15392AE92641E636007B4D11 /* TaxProgressViewController.swift */; };
+		15392AEA2641E636007B4D11 /* TiersProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15392AE92641E636007B4D11 /* TiersProgressViewController.swift */; };
 		155DA125264288E8009AA84A /* UserTaxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155DA124264288E8009AA84A /* UserTaxCell.swift */; };
 		155DA12A26429248009AA84A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155DA12926429248009AA84A /* User.swift */; };
 		15A81494264A7DC400130E5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A81493264A7DC400130E5E /* Constants.swift */; };
@@ -21,6 +21,7 @@
 		15B0F99C2649361200710F2B /* TiersProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B0F99B2649361200710F2B /* TiersProgressView.swift */; };
 		15B0F9B82649449E00710F2B /* ProgressCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B0F9B72649449E00710F2B /* ProgressCollectionCell.swift */; };
 		15B0F9BE26494F2C00710F2B /* Tier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B0F9BD26494F2C00710F2B /* Tier.swift */; };
+		15DE38B9264A8100006D0DD4 /* TierTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE38B8264A8100006D0DD4 /* TierTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +54,7 @@
 		15392AC92641DB74007B4D11 /* TrakerTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrakerTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15392ACD2641DB74007B4D11 /* TrakerTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrakerTestUITests.swift; sourceTree = "<group>"; };
 		15392ACF2641DB74007B4D11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15392AE92641E636007B4D11 /* TaxProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxProgressViewController.swift; sourceTree = "<group>"; };
+		15392AE92641E636007B4D11 /* TiersProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiersProgressViewController.swift; sourceTree = "<group>"; };
 		155DA124264288E8009AA84A /* UserTaxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTaxCell.swift; sourceTree = "<group>"; };
 		155DA12926429248009AA84A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		15A81493264A7DC400130E5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		15B0F99B2649361200710F2B /* TiersProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiersProgressView.swift; sourceTree = "<group>"; };
 		15B0F9B72649449E00710F2B /* ProgressCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionCell.swift; sourceTree = "<group>"; };
 		15B0F9BD26494F2C00710F2B /* Tier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tier.swift; sourceTree = "<group>"; };
+		15DE38B8264A8100006D0DD4 /* TierTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				15A8149B264A7EA400130E5E /* TiersListView.swift */,
+				15DE38B8264A8100006D0DD4 /* TierTableCell.swift */,
 			);
 			path = TiersList;
 			sourceTree = "<group>";
@@ -189,7 +192,7 @@
 			children = (
 				15A814A4264A7ECD00130E5E /* TiersList */,
 				15A814A3264A7EBD00130E5E /* ProgressView */,
-				15392AE92641E636007B4D11 /* TaxProgressViewController.swift */,
+				15392AE92641E636007B4D11 /* TiersProgressViewController.swift */,
 			);
 			path = Tiers;
 			sourceTree = "<group>";
@@ -327,8 +330,9 @@
 				155DA125264288E8009AA84A /* UserTaxCell.swift in Sources */,
 				155DA12A26429248009AA84A /* User.swift in Sources */,
 				15392AAC2641DB60007B4D11 /* AppDelegate.swift in Sources */,
+				15DE38B9264A8100006D0DD4 /* TierTableCell.swift in Sources */,
 				15A8149C264A7EA400130E5E /* TiersListView.swift in Sources */,
-				15392AEA2641E636007B4D11 /* TaxProgressViewController.swift in Sources */,
+				15392AEA2641E636007B4D11 /* TiersProgressViewController.swift in Sources */,
 				15B0F9BE26494F2C00710F2B /* Tier.swift in Sources */,
 				15B0F9B82649449E00710F2B /* ProgressCollectionCell.swift in Sources */,
 				15B0F99C2649361200710F2B /* TiersProgressView.swift in Sources */,
