@@ -9,9 +9,15 @@ import UIKit
 
 class TierTableCell: UITableViewCell {
 
-    var tier: Tier? {
+    var tierProgress: Progress? {
         didSet {
-            titleLabel.text = tier?.title
+            titleLabel.text = tierProgress?.tier.title
+            if tierProgress!.spend < tierProgress!.tier.to {
+                checkedMarkLabel.text = ""
+            }
+            else {
+                checkedMarkLabel.text = "✓"
+            }
         }
     }
     
@@ -23,7 +29,6 @@ class TierTableCell: UITableViewCell {
     
     private let checkedMarkLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "✓"
         label.textColor = .blue
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

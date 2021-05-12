@@ -81,18 +81,20 @@ class ProgressCollectionCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 12
         stackView.alignment  = .center
-        stackView.layer.borderWidth = 1
-        stackView.layer.borderColor = UIColor.black.cgColor
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     private func commonInit() {
         backgroundColor = .white
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.black.cgColor
+        layer.cornerRadius = 8
+        
         addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
+        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         

@@ -53,8 +53,6 @@ class TiersProgressViewController: UIViewController {
         tiersListView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
         tiersListView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
 
-        //tiersListView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: 60).isActive = true
-
     }
     
     init(user: User) {
@@ -92,10 +90,14 @@ extension TiersProgressViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.tierTableCellId, for: indexPath) as? TierTableCell {
-            cell.tier = tiers[indexPath.row]
+            cell.tierProgress = arrProgress![indexPath.row]
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        progresssView.collectionView.scrollToItem(at: IndexPath(row: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
     }
 }
 
