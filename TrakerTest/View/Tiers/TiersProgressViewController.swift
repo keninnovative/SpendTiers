@@ -45,7 +45,7 @@ class TiersProgressViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
         progresssView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 0).isActive = true
-        progresssView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: 100).isActive = true
+        progresssView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         progresssView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
         progresssView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
         
@@ -100,6 +100,10 @@ extension TiersProgressViewController: UITableViewDataSource, UITableViewDelegat
 }
 
 extension TiersProgressViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrProgress!.count
     }

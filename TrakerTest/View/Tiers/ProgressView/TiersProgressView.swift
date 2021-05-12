@@ -23,6 +23,7 @@ final class TiersProgressView: UIView {
         layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
         collectionView.register(ProgressCollectionCell.self, forCellWithReuseIdentifier: CellIdentifiers.progressCollectionCellId)
         collectionView.isPagingEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false

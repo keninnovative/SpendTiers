@@ -49,9 +49,10 @@ class TierTableCell: UITableViewCell {
         addSubview(stackView)
         
         stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
 
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        checkedMarkLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
+        checkedMarkLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
     }
 }

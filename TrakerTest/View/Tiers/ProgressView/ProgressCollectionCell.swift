@@ -43,24 +43,27 @@ class ProgressCollectionCell: UICollectionViewCell {
     
     private let tierFromLabel: UILabel = {
         let label = UILabel(frame: .zero)
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let tierToLabel: UILabel = {
         let label = UILabel(frame: .zero)
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let progressBar: UIProgressView = {
-        let progressView = UIProgressView(frame: .zero)
+        let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
     
     private let msgLabel: UILabel = {
         let label = UILabel(frame: .zero)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -77,6 +80,9 @@ class ProgressCollectionCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [progressStackView, msgLabel])
         stackView.axis = .vertical
         stackView.spacing = 12
+        stackView.alignment  = .center
+        stackView.layer.borderWidth = 1
+        stackView.layer.borderColor = UIColor.black.cgColor
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -84,5 +90,16 @@ class ProgressCollectionCell: UICollectionViewCell {
     private func commonInit() {
         backgroundColor = .white
         addSubview(stackView)
+        
+        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        
+        tierFromLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
+        tierToLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
+        
+        progressBar.heightAnchor.constraint(equalToConstant: 10).isActive = true
+
     }
 }
