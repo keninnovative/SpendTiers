@@ -9,11 +9,12 @@ import UIKit
 
 class UsersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let users = [User(name: "John Doe", spend: 20001),
+    var users = [User(name: "John Doe", spend: 20001),
                  User(name: "Richard Roe", spend: 5002),
                  User(name: "Jane Hoe", spend: 3600)]
     private let cellIdentifier = "UserTaxCell"
-    let tableView = UITableView(frame: .zero)
+    private let tableView = UITableView(frame: .zero)
+    private var addButton: UIBarButtonItem?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -29,6 +30,10 @@ class UsersViewController: UIViewController, UITableViewDataSource, UITableViewD
         view.backgroundColor = .white
         self.title = "Users"
         
+        // user add button on the right of navigation bar
+        addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddUser(sender:)))
+        navigationItem.rightBarButtonItem = addButton
+        
         tableView.tableFooterView = UIView()
         tableView.register(UserTaxCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +47,38 @@ class UsersViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    @objc func onAddUser(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New User", message: "Add name and spend", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "user name"
+            textField.keyboardType = .default
+        }
+        alert.addTextField { textField in
+            textField.placeholder = "$spend"
+            textField.keyboardType = .decimalPad
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] action in
+            guard let nameTextField = alert.textFields?.first,
+                  let userName = nameTextField.text else {
+                return
+            }
+            guard let spendTextField = alert.textFields?[1],
+                  let spend = spendTextField.text else {
+                return
+            }
+            
+            self?.users.append(User(name: userName, spend: Double(spend)!))
+            self?.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
     
     //MARK: - UITableViewDataSource, UITableViewDelegate
