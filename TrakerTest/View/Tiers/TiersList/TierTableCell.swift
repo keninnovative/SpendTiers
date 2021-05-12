@@ -2,7 +2,7 @@
 //  TierTableCell.swift
 //  TrakerTest
 //
-//  Created by Tony Wang on 5/11/21.
+//  Created by Ken Nyame on 5/11/21.
 //
 
 import UIKit
