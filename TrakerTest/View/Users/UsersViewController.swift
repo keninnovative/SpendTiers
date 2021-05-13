@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 class UsersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var users = [User(name: "John Doe", spend: 20001),
+    /*var users = [User(name: "John Doe", spend: 20001),
                  User(name: "Richard Roe", spend: 5002),
-                 User(name: "Jane Hoe", spend: 3600)]
+                 User(name: "Jane Hoe", spend: 3600)]*/
+    
+    var cdUsers: [NSManagedObject] = []
     private let cellIdentifier = "UserTaxCell"
     private let tableView = UITableView(frame: .zero)
     private var addButton: UIBarButtonItem?
@@ -47,6 +50,40 @@ class UsersViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        fetchUsers()
+    }
+    
+    private func fetchUsers() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CDUser")
+        
+        do {
+            cdUsers = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    private func saveUser(name: String, spend: Double) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "CDUser", in: managedContext)!
+        let user = NSManagedObject(entity: entity, insertInto: managedContext)
+        user.setValue(name, forKey: "name")
+        user.setValue(spend, forKey: "spend")
+        
+        do {
+            try managedContext.save()
+            cdUsers.append(user)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+
     }
     
     @objc func onAddUser(sender: UIBarButtonItem) {
@@ -70,7 +107,8 @@ class UsersViewController: UIViewController, UITableViewDataSource, UITableViewD
                 return
             }
             
-            self?.users.append(User(name: userName, spend: Double(spend)!))
+            self?.saveUser(name: userName, spend: Double(spend)!)
+            //self?.users.append(User(name: userName, spend: Double(spend)!))
             self?.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -83,19 +121,22 @@ class UsersViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //MARK: - UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return cdUsers.count//users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? UserTaxCell {
-            cell.user = users[indexPath.row]
+            let cdUser = cdUsers[indexPath.row]
+            let user = User(name: cdUser.value(forKeyPath: "name") as! String, spend: cdUser.value(forKeyPath: "spend") as! Double)
+            cell.user = user
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = users[indexPath.row]
+        let cdUser = cdUsers[indexPath.row]
+        let user = User(name: cdUser.value(forKeyPath: "name") as! String, spend: cdUser.value(forKeyPath: "spend") as! Double)
         self.navigationController?.pushViewController(TiersProgressViewController(user: user), animated: true)
     }
 
